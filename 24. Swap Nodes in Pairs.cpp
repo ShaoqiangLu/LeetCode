@@ -1,23 +1,17 @@
 #include "ListNode.h"
 
+// iterative(dummy node or not) and recursive
 class Solution {
 public:
   ListNode *swapPairs(ListNode *head) {
-    if (!head)
-      return head;
-    ListNode *l = head, *r = head->next, *res = r;
-    while (l && r) {
+    ListNode **pp = &head, *l, *r;
+    while ((l = *pp) && (r = l->next)) {
       l->next = r->next;
       r->next = l;
-      if (l->next) {
-        r = l->next->next;
-        ListNode *t = l->next;
-        l->next = l->next->next;
-        l = t;
-      } else {
-        /* code */
-      }
+      *pp = r; // key
+      pp = &(l->next);
     }
+    return head;
   }
 };
 
