@@ -15,20 +15,7 @@ public:
       return p->val == q->val && isSameTree(p->left, q->left) &&
              isSameTree(p->right, q->right);
   }
-
-  // DFS
-  bool isSameTreeDFS(TreeNode *p, TreeNode *q) {
-    if (!p && !q)
-      return true;
-    else if (!p || !q)
-      return false;
-    if (p->val != q->val)
-      return false;
-    stack<TreeNode *> s;
-    s.push(p);
-    while (p && q) {
-    }
-  }
+  // stack queue
 };
 
 int main() {
