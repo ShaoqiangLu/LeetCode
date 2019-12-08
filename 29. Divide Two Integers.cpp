@@ -11,7 +11,7 @@ public:
         return INT_MIN;
       else if (divisor == -1)
         return INT_MAX;
-    int res = 0, sign = 1, flag = 0;
+    int sign = 1, flag = 0;
     if (dividend == INT_MIN && divisor == INT_MIN)
       return 1;
     else if (divisor == INT_MIN)
@@ -24,15 +24,20 @@ public:
       sign = -1;
     dividend = abs(dividend);
     divisor = abs(divisor);
-    while (dividend >= divisor) {
-      dividend -= divisor;
-      res++;
-      if (flag) {
-        dividend += 1;
-        flag = 0;
+
+    int res = 0;
+    while (dividend) {
+      int tmp = divisor, count = 1;
+      while (dividend / tmp) {
+        tmp <<= 1;
+        count <<= 1;
       }
+      tmp >>= 1;
+      count >>= 1;
+      res += count;
+      dividend %= tmp;
     }
-    return sign == 1 ? res : ~res + 1;
+    return res;
   }
 };
 
