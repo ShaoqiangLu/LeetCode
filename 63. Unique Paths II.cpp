@@ -5,17 +5,12 @@ using namespace std;
 class Solution {
 public:
   int uniquePathsWithObstacles(vector<vector<int>> &obstacleGrid) {
-    if (obstacleGrid[0][0])
-      return 0;
-    vector<int> v(obstacleGrid[0]);
-    for (int &n : v)
-      n = n == 0;
-    for (int i = 1; i < obstacleGrid.size(); i++) {
-      if (obstacleGrid[i][0])
-        v[0] = 0;
-      for (int j = 1; j < v.size(); j++)
-        v[j] = obstacleGrid[i][j] ? 0 : v[j] + v[j - 1];
-    }
+    vector<long> v(obstacleGrid[0].size() + 1);
+    if (!obstacleGrid[0][0])
+      v[1] = 1;
+    for (int i = 0; i < obstacleGrid.size(); i++)
+      for (int j = 0; j < v.size() - 1; j++)
+        v[j + 1] = obstacleGrid[i][j] ? 0 : v[j + 1] + v[j];
     return v.back();
   }
 };
