@@ -5,14 +5,21 @@ using namespace std;
 class Solution {
 public:
   vector<vector<int>> subsets(vector<int> &nums) {
-    vector<vector<int>> subs = {{}};
-    for (int num : nums) {
-      int n = subs.size();
-      for (int i = 0; i < n; i++) {
-        subs.push_back(subs[i]);
-        subs.back().push_back(num);
+    vector<vector<int>> res = {{}};
+    1 << nums.size();
+    for (int i = 0; i <= ; i++) {
+      vector<int> tmp;
+      int count = 0, bits = i;
+      while (bits) {
+        if (bits & 1)
+          tmp.push_back(nums[count]);
+        bits >>= 1;
+        count++;
       }
+      res.push_back(tmp);
     }
-    return subs;
+    return res;
   }
 };
+
+int main() { vector<int> v{1, 2, 3}; }
