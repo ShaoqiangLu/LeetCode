@@ -11,7 +11,7 @@ public:
 
   int minimumTotal(vector<vector<int>> &triangle, int row, int col) {
     if (row == triangle.size() - 1)
-      return min(triangle[row][col], triangle[row][col + 1]);
+      return triangle[row][col];
     return min(minimumTotal(triangle, row + 1, col),
                minimumTotal(triangle, row + 1, col + 1)) +
            triangle[row][col];
