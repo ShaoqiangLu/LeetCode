@@ -5,7 +5,9 @@ public:
   bool isValidBST(TreeNode *root) {
     if (!root)
       return true;
-      
+    if (!isValidBST(root->left))
+      return false;
+      if()
   }
 };
 
