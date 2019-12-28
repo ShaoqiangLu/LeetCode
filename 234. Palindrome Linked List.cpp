@@ -5,24 +5,22 @@ public:
   bool isPalindrome(ListNode *head) {
     if (!head)
       return true;
-    ListNode *fast = head, *slow = head;
+    ListNode *fast = head->next, *slow = head, *next = head->next, *tmp;
+    slow->next = nullptr;
     while (fast && fast->next) {
       fast = fast->next->next;
-      slow = slow->next;
-    }
-    ListNode *cur = slow, *next = cur->next, *tmp;
-    cur->next = nullptr;
-    while (next) {
       tmp = next->next;
-      next->next = cur;
-      cur = next;
+      next->next = slow;
+      slow = next;
       next = tmp;
     }
-    while (cur) {
-      if (head->val != cur->val)
+    if (!fast)
+      slow = slow->next;
+    while (slow) {
+      if (slow->val != next->val)
         return false;
-      head = head->next;
-      cur = cur->next;
+      slow = slow->next;
+      next = next->next;
     }
     return true;
   }
