@@ -16,15 +16,17 @@ public:
     if (idx == nums.size())
       res.push_back(nums);
     for (int i = idx; i < n; i++) {
-      swap(nums[idx], nums[i]);
-      permute(nums, idx + 1, res);
-      swap(nums[idx], nums[i]);
+      if (nums[idx] != nums[i]) {
+        swap(nums[idx], nums[i]);
+        permute(nums, idx + 1, res);
+        swap(nums[idx], nums[i]);
+      }
     }
   }
 };
 
 int main() {
-  vector<int> v{1, 2, 3};
+  vector<int> v{1, 1, 3};
   auto r = Solution().permuteUnique(v);
   return 0;
 }
